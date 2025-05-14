@@ -3,368 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="style.css">
 <title>Trần Thị Kim Chi - Trang Cá Nhân</title>
-<style>
-  /* Reset and base */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: #eee;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-    position: relative;
-  }
-  /* Snowflake container */
-  .snowflake, .shooting-star {
-    position: fixed;
-    top: -10px;
-    z-index: 1000;
-    user-select: none;
-    pointer-events: none;
-  }
-  .snowflake {
-    color: white;
-    font-size: 1rem;
-    opacity: 0.8;
-    animation-name: fall, sway;
-    animation-timing-function: linear, ease-in-out;
-    animation-iteration-count: infinite;
-  }
-  @keyframes fall {
-    0% {
-      transform: translateY(0);
-      opacity: 0.8;
-    }
-    100% {
-      transform: translateY(100vh);
-      opacity: 0;
-    }
-  }
-  @keyframes sway {
-    0%, 100% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(20px);
-    }
-  }
-  /* Shooting star */
-  .shooting-star {
-    width: 100px;
-    height: 2px;
-    background: linear-gradient(90deg, white, transparent);
-    opacity: 0.8;
-    border-radius: 999px;
-    top: 20vh;
-    left: -100px;
-    animation: shooting 3s linear infinite;
-  }
-  @keyframes shooting {
-    0% {
-      transform: translateX(0) translateY(0) rotate(-45deg);
-      opacity: 0.8;
-    }
-    80% {
-      opacity: 0.8;
-    }
-    100% {
-      transform: translateX(120vw) translateY(50vh) rotate(-45deg);
-      opacity: 0;
-    }
-  }
-
-  header {
-    background-color: rgba(63, 81, 181, 0.85);
-    color: white;
-    padding: 1rem 2rem;
-    box-shadow: 0 3px 8px rgba(63,81,181,0.9);
-    position: relative;
-    z-index: 10;
-  }
-  header h1 {
-    margin-bottom: 0.2rem;
-  }
-  header .contact-info {
-    margin-top: 6px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #ffc107;
-  }
-  nav {
-    margin-top: 0.5rem;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-    cursor: pointer;
-  }
-  nav ul li a:hover, nav ul li a.active {
-    color: #ffca28;
-  }
-  main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1000px;
-    margin: 0 auto 3rem auto;
-    position: relative;
-    z-index: 5;
-  }
-  section {
-    display: none;
-  }
-  section.active {
-    display: block;
-  }
-  /* Social links */
-  .social-links {
-    margin-top: 0.5rem;
-    display: flex;
-    gap: 1rem;
-  }
-  .social-links a {
-    color: white;
-    font-size: 1.5rem;
-    transition: color 0.3s;
-  }
-  .social-links a:hover {
-    color: #ffca28;
-  }
-  /* Biography */
-  #biography p {
-    line-height: 1.6;
-    font-size: 1.1rem;
-  }
-  /* Projects */
-  #projects ul {
-    list-style: disc inside;
-    font-size: 1.1rem;
-  }
-  /* Document Storage */
-  #storage {
-    margin-top: 1rem;
-  }
-  #uploaded-files {
-    margin-top: 1rem;
-  }
-  #uploaded-files ul {
-    list-style: none;
-  }
-  #uploaded-files li {
-    background: rgba(255 255 255 / 0.15);
-    margin: 0.3rem 0;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-  }
-  #uploaded-files li span {
-    user-select: text;
-  }
-  #uploaded-files li button {
-    background: #e53935;
-    border: none;
-    color: white;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  #uploaded-files li button:hover {
-    background: #b71c1c;
-  }
-  /* File upload */
-  #upload-section {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    border: 2px dashed #ffca28;
-    border-radius: 8px;
-    text-align: center;
-    background: rgba(255 255 255 / 0.05);
-    color: #ffca28;
-  }
-  #upload-section input[type="file"] {
-    margin-top: 0.8rem;
-    cursor: pointer;
-    color: #ffca28;
-    background: transparent;
-    border: 1px solid #ffca28;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  #upload-section input[type="file"]:hover {
-    background-color: #ffca28;
-    color: #1e3c72;
-  }
-  #upload-section button {
-    margin-left: 0.8rem;
-    background: #ffca28;
-    color: #1e3c72;
-    border: none;
-    padding: 0.4rem 0.9rem;
-    font-weight: 600;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  #upload-section button:hover {
-    background-color: #ffc107;
-  }
-
-  /* Games styles */
-  #games {
-    margin-top: 2rem;
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    color: #333;
-  }
-  .game-container {
-    background: rgba(255 255 255 / 0.85);
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255 255 255, 0.4);
-    padding: 1rem;
-    width: 460px;
-    max-width: 90vw;
-    color: #1e3c72;
-  }
-  .game-container h3 {
-    text-align: center;
-    margin-bottom: 0.8rem;
-    color: #3f51b5;
-  }
-
-  /* Bubble Game */
-  #bubble-game {
-    position: relative;
-    height: 300px;
-    background: linear-gradient(180deg, #a2d9ff, #ffffff);
-    border: 2px solid #3f51b5;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle at center, #80dfff 0%, #007BB3 80%);
-    opacity: 0.85;
-    animation-name: floatUp;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    user-select: none;
-    transition: transform 0.2s ease-out, opacity 0.3s ease-out;
-  }
-  @keyframes floatUp {
-    0% {
-      transform: translateY(100%);
-    }
-    100% {
-      transform: translateY(-150%);
-      opacity: 1;
-    }
-  }
-  .bubble.pop {
-    transform: scale(1.4);
-    opacity: 0;
-  }
-  
-  /* Obstacle (Mario style) Game with mushroom */
-
-  #obstacle-game {
-    position: relative;
-    height: 300px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 2px solid #3f51b5;
-    background: linear-gradient(to top, #1E2D52, #4C6EF5); /* twilight valley */
-  }
-  #obstacle-canvas {
-    display: block;
-    margin: 0 auto;
-    background: transparent;
-  }
-
-  .instructions {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #e0e7ff;
-    margin: 0.5rem 0 0 0;
-    user-select: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    nav ul {
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-    #games {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
-</style>
+<link rel="stylesheet" href="styles.css" />
 <!-- Icons CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-<!-- Snowflakes container -->
-<script>
-  // Generate snowflakes
-  const snowflakeChars = ['❄', '❅', '❆'];
-  function createSnowflake() {
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-    snowflake.textContent = snowflakeChars[Math.floor(Math.random()*snowflakeChars.length)];
-    snowflake.style.left = Math.random() * 100 + 'vw';
-    snowflake.style.fontSize = (Math.random()*16 + 8) + 'px';
-    snowflake.style.animationDuration = (Math.random()*10 + 10) + 's, ' + ((Math.random()*4) + 3) + 's';
-    snowflake.style.animationDelay = '0s, ' + (Math.random()*4) + 's';
-    document.body.appendChild(snowflake);
-    setTimeout(() => {
-      snowflake.remove();
-    }, 15000);
-  }
-  setInterval(createSnowflake, 200);
-
-  // Shooting stars
-  function createShootingStar() {
-    const star = document.createElement('div');
-    star.classList.add('shooting-star');
-    star.style.top = (Math.random() * 40 + 10) + 'vh';
-    star.style.left = '-100px';
-    star.style.animationDuration = (Math.random() * 1.5 + 2.5) + 's';
-    document.body.appendChild(star);
-    setTimeout(() => {
-      star.remove();
-    }, 3500);
-  }
-  setInterval(createShootingStar, 3500);
-</script>
+<!-- Shooting stars container -->
+<div id="shooting-stars-container"></div>
 
 <header>
   <h1>Trần Thị Kim Chi</h1>
   <div class="contact-info" aria-label="Thông tin liên hệ">
-    Số điện thoại: <a href="tel:0935074853" style="color:#ffc107; text-decoration:none;">0935074853</a> |
+    Số điện thoại: <a href="tel:0935074853" style="color:#ffc107; text-decoration:none;">0935074853</a> | 
     Email: <a href="mailto:chi23675@gmail.com" style="color:#ffc107; text-decoration:none;">chi23675@gmail.com</a>
   </div>
   <div class="social-links" aria-label="Liên kết mạng xã hội">
@@ -381,6 +32,7 @@
     </ul>
   </nav>
 </header>
+
 <main>
   <section id="biography" class="active" tabindex="0" aria-label="Tiểu sử cá nhân">
     <h2>Tiểu Sử</h2>
@@ -436,6 +88,16 @@
   </section>
 </main>
 
+<!-- Fixed music player at bottom -->
+<footer>
+  <div id="music-player">
+    <label for="music-url">Dán URL YouTube hoặc Spotify để phát nhạc:</label>
+    <input type="text" id="music-url" placeholder="Ví dụ: https://www.youtube.com/watch?v=dQw4w9WgXcQ" aria-label="Nhập URL nhạc" />
+    <button id="load-music" aria-label="Phát nhạc từ URL">Phát nhạc</button>
+    <div id="music-container" aria-live="polite" aria-atomic="true"></div>
+  </div>
+</footer>
+
 <script>
   // Navigation logic
   const navLinks = document.querySelectorAll('.nav-link');
@@ -451,8 +113,9 @@
         if(section.id === target) {
           section.classList.add('active');
           section.focus();
+        } else {
+          section.classList.remove('active');
         }
-        else section.classList.remove('active');
       });
     });
   });
@@ -581,9 +244,7 @@
     startBubbleGame();
   });
 
-  // Do not start bubble game automatically
-
-  // Obstacle Game (Mario style) with mushroom and snowy valley background
+  // Obstacle Game (Mario style) with nicer shapes
   const canvas = document.getElementById('obstacle-canvas');
   const ctx = canvas.getContext('2d');
   const obstaclePlayBtn = document.getElementById('obstacle-play');
@@ -595,13 +256,12 @@
     y: 0,
     width: 40,
     height: 60,
-    color: '#FFD700', // yellow like Mario hat
     velocityY: 0,
     gravity: 1.2,
     jumpForce: -18,
     grounded: false,
   };
-  const groundLevel = canvas.height - 60;
+  const groundLevel = canvas.height - runner.height;
 
   let obstacles = [];
   let obstacleSpeed = 6;
@@ -610,19 +270,81 @@
   let obstacleRunning = false;
   let score = 0;
 
-  // Images
-  const runnerImage = new Image();
-  runnerImage.src = "https://i.imgur.com/GHH7E4m.png"; // Mario pixel art (facing right, standing)
+  function drawRunner() {
+    // Draw a Mario-style character: red hat and blue overalls simplified
+    // Base body
+    ctx.fillStyle = '#1565c0'; // blue overalls
+    ctx.fillRect(runner.x + 5, runner.y + 20, runner.width - 10, runner.height - 20);
 
-  const mushroomImage = new Image();
-  mushroomImage.src = "https://i.imgur.com/Lvd3GqI.png"; // Mushroom pixel art
+    // Shirt
+    ctx.fillStyle = '#d32f2f'; // red shirt
+    ctx.fillRect(runner.x, runner.y + 20, 10, runner.height - 20);
 
-  // Background images for snowy valley with mountains
-  const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  bgGradient.addColorStop(0, "#1e2d52");
-  bgGradient.addColorStop(1, "#4c6ef5");
+    // Head
+    ctx.fillStyle = '#ffe0bd'; // skin color
+    ctx.beginPath();
+    ctx.ellipse(runner.x + runner.width / 2, runner.y + 10, 14, 18, 0, 0, Math.PI * 2);
+    ctx.fill();
 
-  // Shooting stars for background (drawn each frame)
+    // Hat
+    ctx.fillStyle = '#d32f2f'; // red hat
+    ctx.beginPath();
+    ctx.ellipse(runner.x + runner.width / 2, runner.y + 2, 18, 10, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Hat brim
+    ctx.fillStyle = '#b71c1c';
+    ctx.fillRect(runner.x + 18, runner.y + 8, 20, 5);
+  }
+
+  function drawMushroom(x, y, width, height) {
+    // Mushroom stem
+    ctx.fillStyle = '#f5f5dc';
+    ctx.fillRect(x + width*0.35, y + height*0.5, width * 0.3, height * 0.5);
+
+    // Mushroom cap
+    ctx.beginPath();
+    ctx.ellipse(x + width*0.5, y + height*0.3, width*0.5, height*0.5, 0, 0, Math.PI*2);
+    ctx.fillStyle = '#d32f2f';
+    ctx.fill();
+
+    // White dots on cap
+    ctx.fillStyle = 'white';
+    const dots = [
+      [x + width*0.35, y + height*0.25],
+      [x + width*0.60, y + height*0.15],
+      [x + width*0.70, y + height*0.40],
+      [x + width*0.45, y + height*0.45]
+    ];
+    dots.forEach(([cx, cy]) => {
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, 5, 3.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  // Background gradient for aurora effect
+  function drawAuroraBackground() {
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, '#0e3d59');
+    gradient.addColorStop(0.3, '#1a5cc3');
+    gradient.addColorStop(0.6, '#2a81f7');
+    gradient.addColorStop(1, '#0e3d59');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw soft aurora lines
+    for(let i=0; i<5; i++) {
+      let x = (canvas.width/5)*i + 40;
+      let gradientLine = ctx.createRadialGradient(x, 0, 20, x, canvas.height, 200);
+      gradientLine.addColorStop(0, 'rgba(138, 255, 221, 0.3)');
+      gradientLine.addColorStop(1, 'transparent');
+      ctx.fillStyle = gradientLine;
+      ctx.fillRect(x-100, 0, 200, canvas.height);
+    }
+  }
+
+  // Shooting stars inside canvas for aurora theme
   let shootingStars = [];
   function createShootingStar() {
     shootingStars.push({
@@ -638,10 +360,10 @@
   function updateShootingStars() {
     for(let i = shootingStars.length - 1; i >= 0; i--) {
       const s = shootingStars[i];
-      s.x += s.speedX;
+      s.x -= s.speedX;
       s.y += s.speedY;
       s.opacity -= s.decay;
-      if(s.opacity <= 0 || s.x > canvas.width || s.y > canvas.height){
+      if(s.opacity <= 0 || s.x < 0 || s.y > canvas.height){
         shootingStars.splice(i,1);
       }
     }
@@ -653,14 +375,15 @@
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(s.x, s.y);
-      ctx.lineTo(s.x - s.length, s.y - s.length * 0.3);
+      ctx.lineTo(s.x + s.length, s.y - s.length * 0.3);
       ctx.stroke();
       ctx.restore();
     });
   }
+
   setInterval(() => {
-    if (obstacleRunning && shootingStars.length < 3) createShootingStar();
-  }, 700);
+    if (obstacleRunning && shootingStars.length < 8) createShootingStar();
+  }, 500);
 
   function resetObstacleGame(){
     runner.y = groundLevel;
@@ -674,49 +397,25 @@
   }
 
   function createObstacle(){
-    const size = 50; // fixed size red mushroom base size
+    const size = 50; // mushroom size
     obstacles.push({
       x: canvas.width,
-      y: groundLevel + 10, // position a bit on ground
+      y: groundLevel + 10,
       width: size,
       height: size,
-      image: mushroomImage
     });
   }
 
   function updateObstacle(){
     if(!obstacleRunning) return;
 
-    // Background
-    // Clear
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw gradient background
-    ctx.fillStyle = bgGradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw mountains simple shapes (triangles)
-    ctx.fillStyle = "#24325f";
-    ctx.beginPath();
-    ctx.moveTo(0, groundLevel);
-    ctx.lineTo(100, 150);
-    ctx.lineTo(250, groundLevel);
-    ctx.closePath();
-    ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(180, groundLevel);
-    ctx.lineTo(300, 100);
-    ctx.lineTo(420, groundLevel);
-    ctx.closePath();
-    ctx.fill();
-
-    // Draw ground valley base
-    ctx.fillStyle = "#3a4c7c";
-    ctx.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
-
-    // Update and draw shooting stars
+    drawAuroraBackground();
     updateShootingStars();
     drawShootingStars();
+
+    // Draw ground
+    ctx.fillStyle = '#1c2733';
+    ctx.fillRect(0, groundLevel + runner.height, canvas.width, canvas.height - groundLevel);
 
     // Runner physics
     runner.velocityY += runner.gravity;
@@ -727,14 +426,8 @@
       runner.grounded = true;
     }
 
-    // Draw runner with image
-    if(runnerImage.complete){
-      ctx.drawImage(runnerImage, runner.x, runner.y - 10, runner.width, runner.height);
-    } else {
-      // fallback rectangle if image not loaded
-      ctx.fillStyle = runner.color;
-      ctx.fillRect(runner.x, runner.y, runner.width, runner.height);
-    }
+    // Draw runner character
+    drawRunner();
 
     // Obstacles update and draw mushrooms
     spawnTimer++;
@@ -746,24 +439,19 @@
     for(let i = obstacles.length - 1; i >=0; i--){
       let obs = obstacles[i];
       obs.x -= obstacleSpeed;
-      if(obs.image && obs.image.complete){
-        ctx.drawImage(obs.image, obs.x, obs.y - obs.height, obs.width, obs.height);
-      } else {
-        ctx.fillStyle = "#ff0000";
-        ctx.fillRect(obs.x, obs.y - obs.height, obs.width, obs.height);
-      }
+      drawMushroom(obs.x, obs.y - obs.height, obs.width, obs.height);
 
       // Collision detection (AABB)
       if(runner.x < obs.x + obs.width &&
          runner.x + runner.width > obs.x &&
-         runner.y < obs.y &&
-         runner.y + runner.height > obs.y - obs.height){
-          // Game over
+         runner.y + runner.height > obs.y - obs.height &&
+         runner.y < obs.y){
           obstacleRunning = false;
           alert('Bạn đã va chạm cây nấm! Điểm: ' + score + '\nNhấn OK để chơi lại.');
           resetObstacleGame();
           obstaclePlayBtn.disabled = false;
           obstacleResetBtn.disabled = true;
+          ctx.clearRect(0,0,canvas.width,canvas.height);
           return;
       }
 
@@ -772,8 +460,7 @@
         obstacles.splice(i,1);
         score++;
         obstacleScoreEl.textContent = score;
-        // Gradually increase speed every 10 points
-        if(score % 10 ===0) obstacleSpeed += 0.5;
+        if(score % 10 === 0) obstacleSpeed += 0.5;
       }
     }
     requestAnimationFrame(updateObstacle);
@@ -803,7 +490,6 @@
     ctx.clearRect(0,0,canvas.width,canvas.height);
   });
 
-  // Keyboard and touch for jump
   document.addEventListener('keydown', e => {
     if(e.code === 'Space'){
       e.preventDefault();
@@ -814,6 +500,69 @@
     jumpObstacle();
   });
 
+  // Music player controls
+  const musicUrlInput = document.getElementById('music-url');
+  const loadMusicBtn = document.getElementById('load-music');
+  const musicContainer = document.getElementById('music-container');
+  let currentIframe = null;
+
+  loadMusicBtn.addEventListener('click', () => {
+    const url = musicUrlInput.value.trim();
+    if (!url) {
+      alert('Vui lòng nhập URL hợp lệ!');
+      return;
+    }
+    let embedUrl = null;
+
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      // Convert YouTube URL to embed format
+      const videoIdMatch = url.match(/(youtu.be\/|v=|\/embed\/)([a-zA-Z0-9_-]{11})/);
+      let videoId = null;
+      if(videoIdMatch){
+        videoId = videoIdMatch[2];
+      } else {
+        // Try to extract any ?v= param
+        const urlObj = new URL(url);
+        videoId = urlObj.searchParams.get('v');
+      }
+      if(videoId){
+        embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1`;
+      } else {
+        alert('Không thể nhận dạng video YouTube. Vui lòng nhập URL thành các dạng chuẩn.');
+        return;
+      }
+    } else if (url.includes('open.spotify.com')) {
+      // Convert Spotify url to embed
+      try {
+        const urlObj = new URL(url);
+        const parts = urlObj.pathname.split('/');
+        if(parts.length >= 3){
+          const type = parts[1];
+          const id = parts[2];
+          embedUrl = `https://open.spotify.com/embed/${type}/${id}`;
+        }
+      } catch {
+        alert('URL Spotify không hợp lệ.');
+        return;
+      }
+    } else {
+      alert('Chỉ hỗ trợ URL YouTube và Spotify.');
+      return;
+    }
+
+    if(embedUrl){
+      musicContainer.innerHTML = '';
+      const iframe = document.createElement('iframe');
+      iframe.setAttribute('src', embedUrl);
+      iframe.setAttribute('width', '100%');
+      iframe.setAttribute('height', '80');
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      musicContainer.appendChild(iframe);
+      currentIframe = iframe;
+    }
+  });
 </script>
 </body>
 </html>
