@@ -23,41 +23,64 @@
     background-size: cover;
     background-position: center center;
   }
-  #shooting-stars-container {
-    pointer-events: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    overflow: visible;
-  }
-  .shooting-star {
-    position: absolute;
-    width: 150px;
-    height: 2px;
-    background: linear-gradient(90deg, #fff, transparent);
-    opacity: 0.8;
-    border-radius: 999px;
-    filter: drop-shadow(0 0 3px #cceeff);
-    animation-timing-function: ease-in-out;
-  }
-
-  /* Snowflake styles */
-  .snowflake {
-    pointer-events: none;
+  .snowflake, .shooting-star {
     position: fixed;
     top: -10px;
-    color: white;
-    font-size: 1.5rem;
+    z-index: 1000;
     user-select: none;
-    z-index: 10000;
+    pointer-events: none;
+  }
+  .snowflake {
+    color: white;
+    font-size: 1rem;
+    opacity: 0.8;
     animation-name: fall, sway;
     animation-timing-function: linear, ease-in-out;
     animation-iteration-count: infinite;
   }
   @keyframes fall {
-    0% {transform: translateY(0);opacity: 0.8;}
-    100% {transform: translateY(100vh);opacity: 0;}
+    0% {
+      transform: translateY(0);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
   }
+  @keyframes sway {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(20px);
+    }
+  }
+  /* Shooting star */
+  .shooting-star {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, white, transparent);
+    opacity: 0.8;
+    border-radius: 999px;
+    top: 20vh;
+    left: -100px;
+    animation: shooting 3s linear infinite;
+  }
+  @keyframes shooting {
+    0% {
+      transform: translateX(0) translateY(0) rotate(-45deg);
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(120vw) translateY(50vh) rotate(-45deg);
+      opacity: 0;
+    }
+  }
+
   @keyframes sway {
     0%, 100% {transform: translateX(0);}
     50% {transform: translateX(20px);}
@@ -411,15 +434,16 @@
 </footer>
 
 <script>
-  // Snowflake creation
+  // Generate snowflakes
+  const snowflakeChars = ['❄', '❅', '❆'];
   function createSnowflake() {
     const snowflake = document.createElement('div');
     snowflake.classList.add('snowflake');
-    snowflake.textContent = '❆';
+    snowflake.textContent = snowflakeChars[Math.floor(Math.random()*snowflakeChars.length)];
     snowflake.style.left = Math.random() * 100 + 'vw';
-    snowflake.style.fontSize = (Math.random() * 16 + 12) + 'px';
-    snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's, ' + ((Math.random() * 4) + 3) + 's';
-    snowflake.style.animationDelay = '0s, ' + (Math.random() * 4) + 's';
+    snowflake.style.fontSize = (Math.random()*16 + 8) + 'px';
+    snowflake.style.animationDuration = (Math.random()*10 + 10) + 's, ' + ((Math.random()*4) + 3) + 's';
+    snowflake.style.animationDelay = '0s, ' + (Math.random()*4) + 's';
     document.body.appendChild(snowflake);
     setTimeout(() => {
       snowflake.remove();
