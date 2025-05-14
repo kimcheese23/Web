@@ -1,8 +1,8 @@
-  /* Reset and base */
-  * {
+/* Reset and base */
+* {
     margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
+}
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #a6c0fe, #f68084);
     color: #333;
@@ -16,42 +16,42 @@
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-  }
-  .snowflake, .shooting-star {
+}
+.snowflake, .shooting-star {
     position: fixed;
     top: -10px;
     z-index: 1000;
     user-select: none;
     pointer-events: none;
-  }
-  .snowflake {
+}
+.snowflake {
     color: white;
     font-size: 1rem;
     opacity: 0.8;
     animation-name: fall, sway;
     animation-timing-function: linear, ease-in-out;
     animation-iteration-count: infinite;
-  }
-  @keyframes fall {
+}
+@keyframes fall {
     0% {
-      transform: translateY(0);
-      opacity: 0.8;
+        transform: translateY(0);
+        opacity: 0.8;
     }
     100% {
-      transform: translateY(100vh);
-      opacity: 0;
+        transform: translateY(100vh);
+        opacity: 0;
     }
-  }
-  @keyframes sway {
+    }
+    @keyframes sway {
     0%, 100% {
-      transform: translateX(0);
+        transform: translateX(0);
     }
     50% {
-      transform: translateX(20px);
+        transform: translateX(20px);
     }
-  }
-  /* Shooting star */
-  .shooting-star {
+}
+/* Shooting star */
+.shooting-star {
     width: 100px;
     height: 2px;
     background: linear-gradient(90deg, white, transparent);
@@ -60,27 +60,22 @@
     top: 20vh;
     left: -100px;
     animation: shooting 3s linear infinite;
-  }
-  @keyframes shooting {
+}
+@keyframes shooting {
     0% {
-      transform: translateX(0) translateY(0) rotate(-45deg);
-      opacity: 0.8;
+        transform: translateX(0) translateY(0) rotate(-45deg);
+        opacity: 0.8;
     }
     80% {
-      opacity: 0.8;
+        opacity: 0.8;
     }
     100% {
-      transform: translateX(120vw) translateY(50vh) rotate(-45deg);
-      opacity: 0;
+        transform: translateX(120vw) translateY(50vh) rotate(-45deg);
+        opacity: 0;
     }
-  }
+}
 
-  @keyframes sway {
-    0%, 100% {transform: translateX(0);}
-    50% {transform: translateX(20px);}
-  }
-
-  header {
+header {
     background-color: rgba(31, 56, 103, 0.8);
     color: white;
     padding: 1rem 2rem;
@@ -88,40 +83,40 @@
     position: relative;
     z-index: 10;
     user-select: none;
-  }
-  header h1 {
+}
+header h1 {
     margin-bottom: 0.2rem;
     font-weight: 700;
     font-size: 2.2rem;
     letter-spacing: 1.5px;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-  }
-  header .contact-info {
+}
+header .contact-info {
     margin-top: 6px;
     font-size: 0.95rem;
     font-weight: 500;
     color: #ffc107;
-  }
-  header .contact-info a {
+}
+header .contact-info a {
     color: #ffc107;
     text-decoration: none;
-  }
-  header .contact-info a:hover {
+}
+header .contact-info a:hover {
     text-decoration: underline;
-  }
-  nav {
+}
+nav {
     margin-top: 0.5rem;
-  }
-  nav ul {
+}
+nav ul {
     list-style: none;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-  }
-  nav ul li {
+}
+nav ul li {
     position: relative;
-  }
-  nav ul li button {
+}
+nav ul li button {
     background: none;
     border: none;
     color: #ffc107;
@@ -130,15 +125,28 @@
     padding: 0.2rem 0.6rem;
     border-radius: 6px;
     font-size: 1rem;
-  }
-  nav ul li button:hover,
-  nav ul li button.active {
+}
+nav ul li button:hover,
+nav ul li button.active {
     color: #1e3c72;
     background-color: #ffc107;
     box-shadow: 0 0 8px #ffc107;
+}
+main {
+    flex: 1;
+    padding: 2rem 3rem;
+    max-width: 1100px;
+    margin: 2rem auto 4rem auto;
+    background: rgba(255 255 255 / 0.15);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.13);
+    backdrop-filter: blur(5px);
+    color: #222;
+    user-select: text;
   }
-  /* Dropdown content */
-  .dropdown-content {
+/* Dropdown content */
+
+.dropdown-content{
     display: none;
     position: absolute;
     top: 130%;
@@ -152,17 +160,17 @@
     max-width: 300px;
     color: #222;
     padding: 1rem;
-  }
-  .dropdown-content.active {
-    display: block;
-  }
-  /* Style for social links */
-  .social-links {
+    z-index: 2000; 
+    
+}
+
+/* Style for social links */
+.social-links {
     margin-top: 0.5rem;
     display: flex;
     gap: 1rem;
-  }
-  .social-links a {
+}
+.social-links a {
     background: rgba(255 255 255 / 0.15);
     padding: 0.4rem 0.6rem;
     border-radius: 50%;
@@ -170,53 +178,41 @@
     font-size: 1.8rem;
     transition: transform 0.3s ease, background-color 0.3s ease;
     box-shadow: 0 0 10px rgba(255, 202, 40, 0.7);
-  }
-  .social-links a:hover {
+}
+.social-links a:hover {
     background: rgba(255 255 255 / 0.35);
     transform: scale(1.15);
     color: #fff176;
-  }
+}
 
-  main {
-    flex: 1;
-    padding: 2rem 3rem;
-    max-width: 1100px;
-    margin: 2rem auto 4rem auto;
-    background: rgba(255 255 255 / 0.15);
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.13);
-    backdrop-filter: blur(8px);
-    color: #222;
-    user-select: text;
-  }
-  section {
+section {
     display: none;
-  }
-  section.active {
+}
+section.active {
     display: block;
-  }
-  section h2 {
+}
+section h2 {
     color: #ffca28;
     margin-bottom: 1rem;
     font-size: 2rem;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-  }
-  #projects ul {
+}
+#projects ul {
     margin-left: 1.2rem;
     list-style-type: square;
     color: #ffeb3b;
     font-size: 1.2rem;
-  }
-  #uploaded-files li {
+}
+#uploaded-files li {
     background: rgba(255 255 255 / 0.25);
     border: 1px solid rgba(255 255 255 / 0.4);
     transition: background-color 0.3s ease;
     color: #222;
-  }
-  #uploaded-files li:hover {
+}
+#uploaded-files li:hover {
     background: rgba(255 255 255 / 0.45);
-  }
-  button {
+}
+button {
     font-weight: 600;
     border-radius: 8px;
     border: none;
@@ -227,17 +223,17 @@
     box-shadow: 0 4px 8px rgba(255, 202, 40, 0.4);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     user-select: none;
-  }
-  button:hover:not(:disabled) {
+}
+button:hover:not(:disabled) {
     background-color: #ffd54f;
     box-shadow: 0 6px 14px rgba(255, 214, 79, 0.7);
-  }
-  button:disabled {
+}
+button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     box-shadow: none;
-  }
-  input[type="file"], input[type="text"] {
+}
+input[type="file"], input[type="text"] {
     color: #ffca28;
     background: transparent;
     border: 1px solid #ffca28;
@@ -247,14 +243,14 @@
     transition: background-color 0.3s ease, color 0.3s ease;
     outline-offset: 2px;
     outline-color: transparent;
-  }
-  input[type="file"]:hover, input[type="text"]:hover, input[type="text"]:focus {
+}
+input[type="file"]:hover, input[type="text"]:hover, input[type="text"]:focus {
     background-color: #ffca28;
     color: #1e3c72;
     outline-color: #ffd54f;
-  }
-  .game-container {
-    background: rgba(255 255 255 / 0.25);
+}
+.game-container {
+    background: rgba(255 255 255 / 0.15);
     box-shadow: 0 0 30px rgba(255 202, 40, 0.7);
     border-radius: 15px;
     padding: 1.5rem;
@@ -263,15 +259,76 @@
   .game-container:hover {
     box-shadow: 0 0 40px rgba(255 202, 40, 0.9);
   }
+  /* Games styles */
+  #games {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: #333;
+  }
+  .game-container {
+    background: rgba(255 255 255 / 0.85);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255 255 255, 0.4);
+    padding: 1rem;
+    width: 460px;
+    max-width: 90vw;
+    color: #1e3c72;
+  }
+  .game-container h3 {
+    text-align: center;
+    margin-bottom: 0.8rem;
+    color: #3f51b5;
+  }
+
+  /* Bubble Game */
+  #bubble-game {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(180deg, #a2d9ff, #ffffff);
+    border: 2px solid #3f51b5;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #80dfff 0%, #007BB3 80%);
+    opacity: 0.85;
+    animation-name: floatUp;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    user-select: none;
+    transition: transform 0.2s ease-out, opacity 0.3s ease-out;
+  }
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-150%);
+      opacity: 1;
+    }
+  }
+  .bubble.pop {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  
+  
+  /* Bubble styles */
   .bubble {
     box-shadow: 0 0 8px 2px #4dc6ff;
-    cursor: pointer;
   }
   .bubble.pop {
     box-shadow: 0 0 15px 5px #ffca28;
     transform: scale(1.8);
-    pointer-events: none;
   }
+  
+  /* Instructions text style */
   .instructions {
     font-style: italic;
     text-align: center;
@@ -279,7 +336,7 @@
     color: #ffe066;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
   }
-  footer {
+footer {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -293,20 +350,20 @@
     gap: 1rem;
     flex-wrap: wrap;
     user-select: none;
-  }
-  #music-player label {
+}
+#music-player label {
     white-space: nowrap;
     flex-shrink: 0;
     font-weight: 600;
-  }
-  #music-player input[type="text"] {
+}
+#music-player input[type="text"] {
     flex-grow: 1;
     max-width: 600px;
     border-radius: 6px;
     border: none;
     padding: 0.3rem 0.6rem;
-  }
-  #music-player button {
+}
+#music-player button {
     flex-shrink: 0;
     padding: 0.5rem 1rem;
     font-weight: 700;
@@ -317,22 +374,22 @@
     color: #1e3c72;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  #music-player button:hover {
+}
+#music-player button:hover {
     background-color: #ffd54f;
-  }
-  @media (max-width: 600px) {
+}
+@media (max-width: 600px) {
     main {
-      padding: 1.5rem 1rem;
-      margin: 1rem auto 4rem auto;
-    }
+        padding: 1.5rem 1rem;
+        margin: 1rem auto 3rem auto;
+      }
     nav ul {
-      justify-content: center;
+        justify-content: center;
     }
     nav ul li button {
-      font-size: 1rem;
+        font-size: 1rem;
     }
     header h1 {
-      font-size: 1.6rem;
+        font-size: 1.6rem;
     }
-  }
+}
