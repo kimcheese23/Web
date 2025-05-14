@@ -145,23 +145,22 @@ main {
     user-select: text;
   }
 /* Dropdown content */
+#projects li{
+    color: black;
+}
 
 .dropdown-content{
     display: none;
-    position: absolute;
-    top: 130%;
-    left: 0;
-    background: rgba(255 255 255 / 0.9);
+    padding: 1em;
     backdrop-filter: blur(10px);
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    z-index: 20;
-    min-width: 220px;
-    max-width: 300px;
+    animation: fadeIn 0.5s ease;
     color: #222;
-    padding: 1rem;
-    z-index: 2000; 
-    
+    z-index: 2000;   
+}
+.dropdown-content.active{
+    display: block;  
 }
 
 /* Style for social links */
