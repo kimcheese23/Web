@@ -1,199 +1,200 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="Autobiography/styles.css">
-<title>Trần Thị Kim Chi - Trang Cá Nhân</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-</head>
-<body>
-<div id="shooting-stars-container"></div>
-<header>
-  <h1>Trần Thị Kim Chi</h1>
-  <div class="contact-info" aria-label="Thông tin liên hệ">
-    Số điện thoại: <a href="tel:0935074853" style="color:#ffc107; text-decoration:none;">0935074853</a> |
-    Email: <a href="mailto:chi23675@gmail.com" style="color:#ffc107; text-decoration:none;">chi23675@gmail.com</a>
-  </div>
-  <div class="social-links" aria-label="Liên kết mạng xã hội">
-    <a href="https://www.facebook.com/eomeoi03/" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
-    <a href="https://github.com/kimcheese23" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
-  </div>
-  <nav aria-label="Menu điều hướng chính">
-    <ul>
-      <li>
-        <button id="btn-biography" aria-expanded="true" aria-controls="biography">Tiểu Sử</button>
-        <div id="biography-content" class="dropdown-content active" tabindex="0" aria-label="Nội dung tiểu sử">
-          <p>Xin chào, tôi là <strong>Trần Thị Kim Chi</strong>. Tôi đam mê công nghệ, thiết kế và phát triển web. Qua các dự án và kinh nghiệm của mình, tôi luôn cố gắng tạo ra những sản phẩm sáng tạo và hữu ích. Tôi rất vui được chia sẻ những điều này với bạn tại trang cá nhân của mình.</p>
-        </div>
-      </li>
-      <li>
-        <button id="btn-projects" aria-expanded="false" aria-controls="projects">Dự Án</button>
-        <div id="projects-content" class="dropdown-content" tabindex="0" aria-label="Nội dung dự án">
-          <ul>
-            <li>Website giới thiệu cá nhân tích hợp mini game tương tác</li>
-            <li>Ứng dụng quản lý tài liệu cá nhân với giao diện thân thiện</li>
-            <li>Game vượt chướng ngại vật đơn giản bằng Canvas và JavaScript</li>
-            <li>Hệ thống phản hồi và lưu trữ tài liệu dựa trên trình duyệt</li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <button id="btn-storage" aria-expanded="false" aria-controls="storage">Lưu Trữ Tài Liệu</button>
-        <div id="storage-content" class="dropdown-content" tabindex="0" aria-label="Nội dung lưu trữ tài liệu">
-          <div id="uploaded-files" aria-live="polite"><p>Không có tài liệu nào được tải lên.</p></div>
-        </div>
-      </li>
-      <li>
-        <button id="btn-upload" aria-expanded="false" aria-controls="upload">Tải Tài Liệu Lên</button>
-        <div id="upload-content" class="dropdown-content" tabindex="0" aria-label="Nội dung tải tài liệu lên">
-          <div id="upload-section">
-            <p>Chọn tập tin để tải lên (chỉ lưu trữ trên trình duyệt).</p>
-            <input type="file" id="file-input" aria-label="Chọn tập tin để tải lên" />
-            <button id="upload-btn" type="button" aria-label="Nút tải lên">Tải lên</button>
-            <p id="upload-status" role="alert" aria-live="polite"></p>
-          </div>
-        </div>
-      </li>
-      <li>
-        <button id="btn-games" aria-expanded="false" aria-controls="games">Trò Chơi</button>
-        <div id="games-content" class="dropdown-content" tabindex="0" aria-label="Nội dung trò chơi">
-          <div id="games">
-              <!-- Bubble Pop Game -->
-              <div class="game-container" aria-label="Trò chơi chạm bong bóng nổ">
-                <h3>Chạm Bong Bóng Nổ</h3>
-                <div id="bubble-game" aria-describedby="bubble-desc" tabindex="0" role="application"></div>
-                <p id="bubble-desc" class="instructions" style="color:#1e3c72;">Nhấp hoặc chạm vào các bong bóng để tạo tiếng nổ. Bong bóng sẽ nổi lên từ dưới lên.</p>
-                <p>Điểm: <span id="bubble-score">0</span></p>
-                <button id="bubble-play" type="button" aria-label="Nút chơi trò bong bóng">Chơi</button>
-                      <button id="bubble-reset" type="button" aria-label="Nút chơi lại trò bong bóng" disabled>Chơi Lại</button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="Autobiography/styles.css">
+        <title>Trần Thị Kim Chi - Trang Cá Nhân</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    </head>
+    <body>
+        <div id="shooting-stars-container"></div>
+        <header>
+            <h1>Trần Thị Kim Chi</h1>
+            <div class="contact-info" aria-label="Thông tin liên hệ">
+                Số điện thoại: <a href="tel:0935074853" style="color:#ffc107; text-decoration:none;">0935074853</a> |
+                Email: <a href="mailto:chi23675@gmail.com" style="color:#ffc107; text-decoration:none;">chi23675@gmail.com</a>
             </div>
-          </div>
+            <div class="social-links" aria-label="Liên kết mạng xã hội">
+                <a href="https://www.facebook.com/eomeoi03/" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://github.com/kimcheese23" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <nav aria-label="Menu điều hướng chính">
+                <ul>
+                    <li>
+                        <button id="btn-biography" onclick="showContent('biography')">Tiểu Sử</button>
+                    </li>
+                    <li>
+                        <button id="btn-projects" onclick="showContent('projects')">Dự Án</button>
+                    </li>
+                    <li>
+                        <button id="btn-upload" onclick="showContent('upload')">Tải Tài Liệu Lên</button>                    
+                    </li>
+                    <li>
+                        <button id="btn-games" onclick="showContent('games')">Trò Chơi</button>                    
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div id ="biography" class="dropdown-content-active">
+                <p>Xin chào, tớ là <strong>Trần Thị Kim Chi</strong>. Tớ đam mê công nghệ, thiết kế và phát triển web. Qua các dự án và kinh nghiệm của mình, tớ luôn cố gắng tạo ra những sản phẩm sáng tạo và hữu ích. Tớ rất vui được chia sẻ những điều này với bạn tại trang cá nhân của mình. Tớ đang trên hành trình biến những dòng code lỗi tè le thành trang web hoạt động — một cách từ tốn, lì lợm và dựa hoàn toàn vào Google. Nhưng không sao! Mỗi lần dính bug là tớ học thêm được điều gì đó mới — ví dụ như cách khóc sao cho tiết kiệm nước mắt hơn. Một ngày nào đó, tớ sẽ có một cái portfolio đủ xịn để khoe với con mèo nhà mình. Còn bây giờ, cứ tiếp tục xây, phá, học thôi!</p>
+                <p>👩‍💻 I'm a web development enthusiast who's currently diving into the world of HTML, CSS, and JavaScript. I'm learning how to use GitHub to manage and share my projects — making mistakes, fixing them, and learning a ton along the way. I'm not an expert (yet!), but I love figuring things out step by step. My goal is to build simple, clean websites that actually work — and to enjoy the process while I'm at it. I recently started learning HTML, CSS, and JavaScript, and guess what? I now know that a missing semicolon can ruin your whole day. But hey, I'm not giving up. Every bug teaches me something new (like how to cry more efficiently). I’m on a mission to turn broken code into working websites — slowly, stubbornly, and with a lot of Google searches. One day I’ll make a portfolio I won’t be embarrassed to show my cat. Until then, I’ll just keep building, breaking, and learning.</p>
+            </div>
+            <div id="projects" class="dropdown-content" tabindex="0" aria-label="Nội dung dự án">
+                <ul>
+                    <li>Website giới thiệu cá nhân tích hợp mini game tương tác</li>
+                    <li>Ứng dụng quản lý tài liệu cá nhân với giao diện thân thiện</li>
+                    <li>Game vượt chướng ngại vật đơn giản bằng Canvas và JavaScript</li>
+                    <li>Hệ thống phản hồi và lưu trữ tài liệu dựa trên trình duyệt</li>
+                </ul>
+            </div>
+            <div id="upload" class="dropdown-content">
+                <div id="upload-section">
+                    <p>Chọn tập tin để tải lên (chỉ lưu trữ trên trình duyệt).</p>
+                    <input type="file" id="file-input" aria-label="Chọn tập tin để tải lên" />
+                    <button id="upload-btn" type="button" aria-label="Nút tải lên">Tải lên</button>
+                    <p id="upload-status" role="alert" aria-live="polite"></p>
+                </div>
+            </div>
+            <div id="games" class="dropdown-content">
+                <!-- Bubble Pop Game -->
+                <div class="game-container" aria-label="Trò chơi chạm bong bóng nổ">
+                    <h3>Chạm Bong Bóng Nổ</h3>
+                    <div id="bubble-game" aria-describedby="bubble-desc" tabindex="0" role="application"></div>
+                    <p id="bubble-desc" class="instructions" style="color:#1e3c72;">Nhấp hoặc chạm vào các bong bóng để tạo tiếng nổ. Bong bóng sẽ nổi lên từ dưới lên.</p>
+                    <p>Điểm: <span id="bubble-score">0</span></p>
+                    <button id="bubble-play" type="button" aria-label="Nút chơi trò bong bóng">Chơi</button>
+                    <button id="bubble-reset" type="button" aria-label="Nút chơi lại trò bong bóng" disabled>Chơi Lại</button>
+                </div>
+            </div>
+        </main>
+        <footer>
+        <div id="music-player">
+            <label for="music-url">Dán URL YouTube hoặc Spotify để phát nhạc:</label>
+            <input type="text" id="music-url" placeholder="Ví dụ: https://www.youtube.com/watch?v=dQw4w9WgXcQ" aria-label="Nhập URL nhạc" />
+            <button id="load-music" aria-label="Phát nhạc từ URL">Phát nhạc</button>
+            <div id="music-container" aria-live="polite" aria-atomic="true"></div>
         </div>
-      </li>
-    </ul>
-  </nav>
-</header>
+        </footer>
 
-<main></main>
+        <script>
+        // Generate snowflakes
+        const snowflakeChars = ['❄', '❅', '❆'];
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = snowflakeChars[Math.floor(Math.random()*snowflakeChars.length)];
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.fontSize = (Math.random()*16 + 8) + 'px';
+            snowflake.style.animationDuration = (Math.random()*10 + 10) + 's, ' + ((Math.random()*4) + 3) + 's';
+            snowflake.style.animationDelay = '0s, ' + (Math.random()*4) + 's';
+            document.body.appendChild(snowflake);
+            setTimeout(() => {
+            snowflake.remove();
+            }, 15000);
+        }
+        setInterval(createSnowflake, 200);
 
-<footer>
-  <div id="music-player">
-    <label for="music-url">Dán URL YouTube hoặc Spotify để phát nhạc:</label>
-    <input type="text" id="music-url" placeholder="Ví dụ: https://www.youtube.com/watch?v=dQw4w9WgXcQ" aria-label="Nhập URL nhạc" />
-    <button id="load-music" aria-label="Phát nhạc từ URL">Phát nhạc</button>
-    <div id="music-container" aria-live="polite" aria-atomic="true"></div>
-  </div>
-</footer>
+            // Shooting stars container and logic
+            const shootingStarsContainer = document.getElementById('shooting-stars-container');
+            function createShootingStar() {
+            const star = document.createElement('div');
+            star.classList.add('shooting-star');
+            star.style.top = (Math.random() * 40 + 10) + 'vh';
+            star.style.left = '100vw';
+            star.style.opacity = Math.random() * 0.5 + 0.5;
+            star.style.animationDuration = (Math.random() * 1.2 + 2.5) + 's';
+            shootingStarsContainer.appendChild(star);
+            const angle = Math.random() * -30 - 30; // từ -30 đến -60 độ
+            star.style.transform = `rotate(${angle}deg)`;
+            star.animate(
+            [
+                { transform: `translateX(0) translateY(0) rotate(${angle}deg)`, opacity: star.style.opacity },
+                { transform: `translateX(-120vw) translateY(50vh) rotate(${angle}deg)`, opacity: 0 }
+            ],
+            {
+                duration: parseFloat(star.style.animationDuration) * 1000,
+                easing: 'ease-in-out'
+            }
+        ).onfinish = () => star.remove();
+            }
+            setInterval(() => {
+            const starCount = Math.floor(Math.random() * 5) + 1; // từ 5 đến 10 sao
+            for (let i = 0; i < starCount; i++) {
+                createShootingStar();
+            }
+            }, 3500);
+            function randomShootingStars() {
+            const delay = Math.random() * 1500 + 500; 
+            createShootingStar();
+            setTimeout(randomShootingStars, delay);
+            }
 
-<script>
-  // Generate snowflakes
-  const snowflakeChars = ['❄', '❅', '❆'];
-  function createSnowflake() {
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-    snowflake.textContent = snowflakeChars[Math.floor(Math.random()*snowflakeChars.length)];
-    snowflake.style.left = Math.random() * 100 + 'vw';
-    snowflake.style.fontSize = (Math.random()*16 + 8) + 'px';
-    snowflake.style.animationDuration = (Math.random()*10 + 10) + 's, ' + ((Math.random()*4) + 3) + 's';
-    snowflake.style.animationDelay = '0s, ' + (Math.random()*4) + 's';
-    document.body.appendChild(snowflake);
-    setTimeout(() => {
-      snowflake.remove();
-    }, 15000);
-  }
-  setInterval(createSnowflake, 200);
+        randomShootingStars();
+        // Navigation toggle logic
+        function showContent(id) {
+            const contents = document.querySelectorAll('.dropdown-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+        }
 
-  // Shooting stars container and logic
-  const shootingStarsContainer = document.getElementById('shooting-stars-container');
-  function createShootingStar() {
-    const star = document.createElement('div');
-    star.classList.add('shooting-star');
-    star.style.top = (Math.random() * 40 + 10) + 'vh';
-    star.style.left = '100vw';
-    star.style.opacity = Math.random() * 0.5 + 0.5;
-    star.style.animationDuration = (Math.random() * 1.2 + 2.5) + 's';
-    shootingStarsContainer.appendChild(star);
-    star.animate(
-      [
-        { transform: 'translateX(0) translateY(0) rotate(-45deg)', opacity: star.style.opacity },
-        { transform: 'translateX(-120vw) translateY(50vh) rotate(-45deg)', opacity: 0 }
-      ],
-      { duration: star.style.animationDuration.replace('s', '') * 1000, easing: 'ease-in-out' }
-    ).onfinish = () => star.remove();
-  }
-  setInterval(createShootingStar, 3500);
 
-  // Navigation toggle logic
-  const navButtons = document.querySelectorAll('nav ul li button');
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      // Close all
-      navButtons.forEach(b => {
-        b.setAttribute('aria-expanded', 'false');
-        document.getElementById(b.id.replace('btn', b.id.replace('btn', '').toLowerCase() + '-content')).classList.remove('active');
-      });
-      // Open clicked only if it was closed
-      if (!expanded) {
-        btn.setAttribute('aria-expanded', 'true');
-        document.getElementById(btn.id.replace('btn', btn.id.replace('btn', '').toLowerCase() + '-content')).classList.add('active');
-      }
-    });
-  });
 
-  // Document Storage and Upload with localStorage
-  const fileInput = document.getElementById('file-input');
-  const uploadBtn = document.getElementById('upload-btn');
-  const uploadedFilesContainer = document.getElementById('uploaded-files');
-  const uploadStatus = document.getElementById('upload-status');
+        // Document Storage and Upload with localStorage
+        const fileInput = document.getElementById('file-input');
+        const uploadBtn = document.getElementById('upload-btn');
+        const uploadedFilesContainer = document.getElementById('uploaded-files');
+        const uploadStatus = document.getElementById('upload-status');
 
-  function loadFiles() {
-    let files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
-    if(files.length === 0) {
-      uploadedFilesContainer.innerHTML = "<p>Không có tài liệu nào được tải lên.</p>";
-    } else {
-      const ul = document.createElement('ul');
-      files.forEach((file, i) => {
-        const li = document.createElement('li');
-        const span = document.createElement('span');
-        span.textContent = file.name;
-        const btn = document.createElement('button');
-        btn.textContent = 'Xóa';
-        btn.setAttribute('aria-label', 'Xóa ' + file.name);
-        btn.addEventListener('click', () => {
-          files.splice(i,1);
-          localStorage.setItem('uploadedFiles', JSON.stringify(files));
-          loadFiles();
+        function loadFiles() {
+            let files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
+            if(files.length === 0) {
+            uploadedFilesContainer.innerHTML = "<p>Không có tài liệu nào được tải lên.</p>";
+            } else {
+            const ul = document.createElement('ul');
+            files.forEach((file, i) => {
+                const li = document.createElement('li');
+                const span = document.createElement('span');
+                span.textContent = file.name;
+                const btn = document.createElement('button');
+                btn.textContent = 'Xóa';
+                btn.setAttribute('aria-label', 'Xóa ' + file.name);
+                btn.addEventListener('click', () => {
+                files.splice(i,1);
+                localStorage.setItem('uploadedFiles', JSON.stringify(files));
+                loadFiles();
+                });
+                li.appendChild(span);
+                li.appendChild(btn);
+                ul.appendChild(li);
+            });
+            uploadedFilesContainer.innerHTML = '';
+            uploadedFilesContainer.appendChild(ul);
+            }
+        }
+
+        uploadBtn.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            if(!file){
+            uploadStatus.textContent = 'Vui lòng chọn một tập tin!';
+            uploadStatus.style.color = 'red';
+            return;
+            }
+            let files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
+            files.push({name: file.name});
+            localStorage.setItem('uploadedFiles', JSON.stringify(files));
+            uploadStatus.textContent = 'Tập tin "' + file.name + '" đã được lưu trong trình duyệt.';
+            uploadStatus.style.color = 'limegreen';
+            fileInput.value = '';
+            loadFiles();
         });
-        li.appendChild(span);
-        li.appendChild(btn);
-        ul.appendChild(li);
-      });
-      uploadedFilesContainer.innerHTML = '';
-      uploadedFilesContainer.appendChild(ul);
-    }
-  }
 
-  uploadBtn.addEventListener('click', () => {
-    const file = fileInput.files[0];
-    if(!file){
-      uploadStatus.textContent = 'Vui lòng chọn một tập tin!';
-      uploadStatus.style.color = 'red';
-      return;
-    }
-    let files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
-    files.push({name: file.name});
-    localStorage.setItem('uploadedFiles', JSON.stringify(files));
-    uploadStatus.textContent = 'Tập tin "' + file.name + '" đã được lưu trong trình duyệt.';
-    uploadStatus.style.color = 'limegreen';
-    fileInput.value = '';
-    loadFiles();
-  });
+        loadFiles();
 
-  loadFiles();
-
-  // Bubble Pop Game
+          // Bubble Pop Game
   const bubbleGame = document.getElementById('bubble-game');
   const bubbleScoreEl = document.getElementById('bubble-score');
   const bubblePlayBtn = document.getElementById('bubble-play');
@@ -265,81 +266,82 @@
     stopBubbleGame();
     startBubbleGame();
   });
+
   // Do not start bubble game automatically
 
-  // Music player controls
-  const musicUrlInput = document.getElementById('music-url');
-  const loadMusicBtn = document.getElementById('load-music');
-  const musicContainer = document.getElementById('music-container');
-  let currentIframe = null;
+        // Music player controls
+        const musicUrlInput = document.getElementById('music-url');
+        const loadMusicBtn = document.getElementById('load-music');
+        const musicContainer = document.getElementById('music-container');
+        let currentIframe = null;
 
-  // Load default Fake Love instrumental (YouTube embed URL)
-  const defaultEmbedUrl = "https://www.youtube.com/embed/fnCSI0btU1E?autoplay=1&controls=1&loop=1&playlist=fnCSI0btU1E";
-  function loadMusic(src) {
-    musicContainer.innerHTML = '';
-    const iframe = document.createElement('iframe');
-    iframe.setAttribute('src', src);
-    iframe.setAttribute('width', '100%');
-    iframe.setAttribute('height', '80');
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
-    iframe.setAttribute('allowfullscreen', '');
-    musicContainer.appendChild(iframe);
-    currentIframe = iframe;
-  }
-  loadMusic(defaultEmbedUrl);
-
-  loadMusicBtn.addEventListener('click', () => {
-    const url = musicUrlInput.value.trim();
-    if (!url) {
-      alert('Vui lòng nhập URL hợp lệ!');
-      return;
-    }
-    let embedUrl = null;
-
-    if (url.includes('youtube.com') || url.includes('youtu.be')) {
-      const videoIdMatch = url.match(/(youtu.be\/|v=|\/embed\/)([a-zA-Z0-9_-]{11})/);
-      let videoId = null;
-      if(videoIdMatch){
-        videoId = videoIdMatch[2];
-      } else {
-        try {
-          const urlObj = new URL(url);
-          videoId = urlObj.searchParams.get('v');
-        } catch {
-          videoId = null;
+        // Load default Fake Love instrumental (YouTube embed URL)
+        const defaultEmbedUrl = "https://www.youtube.com/embed/fnCSI0btU1E?autoplay=1&controls=1&loop=1&playlist=fnCSI0btU1E";
+        function loadMusic(src) {
+            musicContainer.innerHTML = '';
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('src', src);
+            iframe.setAttribute('width', '100%');
+            iframe.setAttribute('height', '80');
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+            iframe.setAttribute('allowfullscreen', '');
+            musicContainer.appendChild(iframe);
+            currentIframe = iframe;
         }
-      }
-      if(videoId){
-        embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1`;
-      } else {
-        alert('Không thể nhận dạng video YouTube. Vui lòng nhập URL thành các dạng chuẩn.');
-        return;
-      }
-    } else if (url.includes('open.spotify.com')) {
-      try {
-        const urlObj = new URL(url);
-        const parts = urlObj.pathname.split('/');
-        if(parts.length >= 3){
-          const type = parts[1];
-          const id = parts[2];
-          embedUrl = `https://open.spotify.com/embed/${type}/${id}`;
-        }
-      } catch {
-        alert('URL Spotify không hợp lệ.');
-        return;
-      }
-    } else {
-      alert('Chỉ hỗ trợ URL YouTube và Spotify.');
-      return;
-    }
+        loadMusic(defaultEmbedUrl);
 
-    if(embedUrl){
-      loadMusic(embedUrl);
-    }
-  });
+        loadMusicBtn.addEventListener('click', () => {
+            const url = musicUrlInput.value.trim();
+            if (!url) {
+            alert('Vui lòng nhập URL hợp lệ!');
+            return;
+            }
+            let embedUrl = null;
 
-</script>
-</body>
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+            const videoIdMatch = url.match(/(youtu.be\/|v=|\/embed\/)([a-zA-Z0-9_-]{11})/);
+            let videoId = null;
+            if(videoIdMatch){
+                videoId = videoIdMatch[2];
+            } else {
+                try {
+                const urlObj = new URL(url);
+                videoId = urlObj.searchParams.get('v');
+                } catch {
+                videoId = null;
+                }
+            }
+            if(videoId){
+                embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1`;
+            } else {
+                alert('Không thể nhận dạng video YouTube. Vui lòng nhập URL thành các dạng chuẩn.');
+                return;
+            }
+            } else if (url.includes('open.spotify.com')) {
+            try {
+                const urlObj = new URL(url);
+                const parts = urlObj.pathname.split('/');
+                if(parts.length >= 3){
+                const type = parts[1];
+                const id = parts[2];
+                embedUrl = `https://open.spotify.com/embed/${type}/${id}`;
+                }
+            } catch {
+                alert('URL Spotify không hợp lệ.');
+                return;
+            }
+            } else {
+            alert('Chỉ hỗ trợ URL YouTube và Spotify.');
+            return;
+            }
+
+            if(embedUrl){
+            loadMusic(embedUrl);
+            }
+        });
+
+        </script>
+    </body>
 </html>
 
