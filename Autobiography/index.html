@@ -80,12 +80,9 @@
 <footer>
   <div id="music-player">
     <label for="music-url">Dán URL YouTube hoặc Spotify để phát nhạc:</label>
-        <audio controls autoplay muted>
-            <source src="https://www.youtube.com/watch?v=Anycp_NGCkY" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    <input type="text" id="music-url" placeholder="Ví dụ: https://www.youtube.com/watch?v=dQw4w9WgXcQ" aria-label="Nhập URL nhạc" />
     <button id="load-music" aria-label="Phát nhạc từ URL">Phát nhạc</button>
-    <div id="music-container" aria-live="polite" aria-atomic="true" style="flex-grow:1;"></div>
+    <div id="music-container" aria-live="polite" aria-atomic="true"></div>
   </div>
 </footer>
 
