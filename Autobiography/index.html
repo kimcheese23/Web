@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trần Thị Kim Chi - Trang Cá Nhân</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #eee;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+  }
+  /* Snowflake container */
+  .snowflake, .shooting-star {
+    position: fixed;
+    top: -10px;
+    z-index: 1000;
+    user-select: none;
+    pointer-events: none;
+  }
+  .snowflake {
+    color: white;
+    font-size: 1rem;
+    opacity: 0.8;
+    animation-name: fall, sway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  @keyframes fall {
+    0% {
+      transform: translateY(0);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+  @keyframes sway {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(20px);
+    }
+  }
+  /* Shooting star */
+  .shooting-star {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, white, transparent);
+    opacity: 0.8;
+    border-radius: 999px;
+    top: 20vh;
+    left: -100px;
+    animation: shooting 3s linear infinite;
+  }
+  @keyframes shooting {
+    0% {
+      transform: translateX(0) translateY(0) rotate(-45deg);
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(120vw) translateY(50vh) rotate(-45deg);
+      opacity: 0;
+    }
+  }
+
+  header {
+    background-color: rgba(63, 81, 181, 0.85);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 3px 8px rgba(63,81,181,0.9);
+    position: relative;
+    z-index: 10;
+  }
+  header h1 {
+    margin-bottom: 0.2rem;
+  }
+  header .contact-info {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ffc107;
+  }
+  nav {
+    margin-top: 0.5rem;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+  nav ul li a:hover, nav ul li a.active {
+    color: #ffca28;
+  }
+  main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto 3rem auto;
+    position: relative;
+    z-index: 5;
+  }
+  section {
+    display: none;
+  }
+  section.active {
+    display: block;
+  }
+  /* Social links */
+  .social-links {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+  }
+  .social-links a:hover {
+    color: #ffca28;
+  }
+  /* Biography */
+  #biography p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+  /* Projects */
+  #projects ul {
+    list-style: disc inside;
+    font-size: 1.1rem;
+  }
+  /* Document Storage */
+  #storage {
+    margin-top: 1rem;
+  }
+  #uploaded-files {
+    margin-top: 1rem;
+  }
+  #uploaded-files ul {
+    list-style: none;
+  }
+  #uploaded-files li {
+    background: rgba(255 255 255 / 0.15);
+    margin: 0.3rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+  #uploaded-files li span {
+    user-select: text;
+  }
+  #uploaded-files li button {
+    background: #e53935;
+    border: none;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  #uploaded-files li button:hover {
+    background: #b71c1c;
+  }
+  /* File upload */
+  #upload-section {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 2px dashed #ffca28;
+    border-radius: 8px;
+    text-align: center;
+    background: rgba(255 255 255 / 0.05);
+    color: #ffca28;
+  }
+  #upload-section input[type="file"] {
+    margin-top: 0.8rem;
+    cursor: pointer;
+    color: #ffca28;
+    background: transparent;
+    border: 1px solid #ffca28;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  #upload-section input[type="file"]:hover {
+    background-color: #ffca28;
+    color: #1e3c72;
+  }
+  #upload-section button {
+    margin-left: 0.8rem;
+    background: #ffca28;
+    color: #1e3c72;
+    border: none;
+    padding: 0.4rem 0.9rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  #upload-section button:hover {
+    background-color: #ffc107;
+  }
+
+  /* Games styles */
+  #games {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: #333;
+  }
+  .game-container {
+    background: rgba(255 255 255 / 0.85);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255 255 255, 0.4);
+    padding: 1rem;
+    width: 460px;
+    max-width: 90vw;
+    color: #1e3c72;
+  }
+  .game-container h3 {
+    text-align: center;
+    margin-bottom: 0.8rem;
+    color: #3f51b5;
+  }
+
+  /* Bubble Game */
+  #bubble-game {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(180deg, #a2d9ff, #ffffff);
+    border: 2px solid #3f51b5;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #80dfff 0%, #007BB3 80%);
+    opacity: 0.85;
+    animation-name: floatUp;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    user-select: none;
+    transition: transform 0.2s ease-out, opacity 0.3s ease-out;
+  }
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-150%);
+      opacity: 1;
+    }
+  }
+  .bubble.pop {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  
+  /* Obstacle (Mario style) Game with mushroom */
+
+  #obstacle-game {
+    position: relative;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #3f51b5;
+    background: linear-gradient(to top, #1E2D52, #4C6EF5); /* twilight valley */
+  }
+  #obstacle-canvas {
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+  }
+
+  .instructions {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #e0e7ff;
+    margin: 0.5rem 0 0 0;
+    user-select: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    nav ul {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    #games {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+</style>
+<!-- Icons CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+<!-- Snowflakes container -->
+<script>
+  // Generate snowflakes
+  const snowflakeChars = ['❄', '❅', '❆'];
+  function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    snowflake.textContent = snowflakeChars[Math.floor(Math.random()*snowflakeChars.length)];
+    snowflake.style.left = Math.random() * 100 + 'vw';
+    snowflake.style.fontSize = (Math.random()*16 + 8) + 'px';
+    snowflake.style.animationDuration = (Math.random()*10 + 10) + 's, ' + ((Math.random()*4) + 3) + 's';
+    snowflake.style.animationDelay = '0s, ' + (Math.random()*4) + 's';
+    document.body.appendChild(snowflake);
+    setTimeout(() => {
+      snowflake.remove();
+    }, 15000);
+  }
+  setInterval(createSnowflake, 200);
+
+  // Shooting stars
+  function createShootingStar() {
+    const star = document.createElement('div');
+    star.classList.add('shooting-star');
+    star.style.top = (Math.random() * 40 + 10) + 'vh';
+    star.style.left = '-100px';
+    star.style.animationDuration = (Math.random() * 1.5 + 2.5) + 's';
+    document.body.appendChild(star);
+    setTimeout(() => {
+      star.remove();
+    }, 3500);
+  }
+  setInterval(createShootingStar, 3500);
+</script>
+
+<header>
+  <h1>Trần Thị Kim Chi</h1>
+  <div class="contact-info" aria-label="Thông tin liên hệ">
+    Số điện thoại: <a href="tel:0935074853" style="color:#ffc107; text-decoration:none;">0935074853</a> |
+    Email: <a href="mailto:chi23675@gmail.com" style="color:#ffc107; text-decoration:none;">chi23675@gmail.com</a>
+  </div>
+  <div class="social-links" aria-label="Liên kết mạng xã hội">
+    <a href="https://www.facebook.com/eomeoi03/" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://github.com/kimcheese23" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+  </div>
+  <nav aria-label="Menu điều hướng chính">
+    <ul>
+      <li><a href="#" class="nav-link active" data-target="biography">Tiểu Sử</a></li>
+      <li><a href="#" class="nav-link" data-target="projects">Dự Án</a></li>
+      <li><a href="#" class="nav-link" data-target="storage">Lưu Trữ Tài Liệu</a></li>
+      <li><a href="#" class="nav-link" data-target="upload">Tải Tài Liệu Lên</a></li>
+      <li><a href="#" class="nav-link" data-target="games">Trò Chơi</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section id="biography" class="active" tabindex="0" aria-label="Tiểu sử cá nhân">
+    <h2>Tiểu Sử</h2>
+    <p>Xin chào, tôi là <strong>Trần Thị Kim Chi</strong>. Tôi đam mê công nghệ, thiết kế và phát triển web. Qua các dự án và kinh nghiệm của mình, tôi luôn cố gắng tạo ra những sản phẩm sáng tạo và hữu ích. Tôi rất vui được chia sẻ những điều này với bạn tại trang cá nhân của mình.</p>
+  </section>
+  <section id="projects" tabindex="0" aria-label="Danh sách dự án">
+    <h2>Dự Án</h2>
+    <ul>
+      <li>Website giới thiệu cá nhân tích hợp mini game tương tác</li>
+      <li>Ứng dụng quản lý tài liệu cá nhân với giao diện thân thiện</li>
+      <li>Game vượt chướng ngại vật đơn giản bằng Canvas và JavaScript</li>
+      <li>Hệ thống phản hồi và lưu trữ tài liệu dựa trên trình duyệt</li>
+    </ul>
+  </section>
+  <section id="storage" tabindex="0" aria-label="Lưu trữ tài liệu">
+    <h2>Lưu Trữ Tài Liệu</h2>
+    <div id="uploaded-files" aria-live="polite">
+      <p>Không có tài liệu nào được tải lên.</p>
+    </div>
+  </section>
+  <section id="upload" tabindex="0" aria-label="Tải tài liệu lên">
+    <h2>Tải Tài Liệu Lên</h2>
+    <div id="upload-section">
+      <p>Chọn tập tin để tải lên (chỉ lưu trữ trên trình duyệt).</p>
+      <input type="file" id="file-input" aria-label="Chọn tập tin để tải lên" />
+      <button id="upload-btn" type="button" aria-label="Nút tải lên">Tải lên</button>
+      <p id="upload-status" role="alert" aria-live="polite"></p>
+    </div>
+  </section>
+  <section id="games" tabindex="0" aria-label="Các trò chơi tương tác">
+    <h2>Trò Chơi Tương Tác</h2>
+    <div id="games">
+      <!-- Bubble Pop Game -->
+      <div class="game-container" aria-label="Trò chơi chạm bong bóng nổ">
+        <h3>Chạm Bong Bóng Nổ</h3>
+        <div id="bubble-game" aria-describedby="bubble-desc" tabindex="0" role="application"></div>
+        <p id="bubble-desc" class="instructions" style="color:#1e3c72;">Nhấp hoặc chạm vào các bong bóng để tạo tiếng nổ. Bong bóng sẽ nổi lên từ dưới lên.</p>
+        <p>Điểm: <span id="bubble-score">0</span></p>
+        <button id="bubble-play" type="button" aria-label="Nút chơi trò bong bóng">Chơi</button>
+        <button id="bubble-reset" type="button" aria-label="Nút chơi lại trò bong bóng" disabled>Chơi Lại</button>
+      </div>
+
+      <!-- Obstacle Game (Mario style) -->
+      <div class="game-container" aria-label="Trò chơi vượt chướng ngại vật">
+        <h3>Vượt Chướng Ngại Vật (Mario Style)</h3>
+        <canvas id="obstacle-canvas" width="460" height="300" role="application" aria-label="Canvas trò chơi vượt chướng ngại vật"></canvas>
+        <p class="instructions" style="color:#e0e7ff;">Nhấn phím cách hoặc chạm để nhảy qua cây nấm.</p>
+        <p>Điểm: <span id="obstacle-score">0</span></p>
+        <button id="obstacle-play" type="button" aria-label="Nút chơi trò vượt chướng ngại vật">Chơi</button>
+        <button id="obstacle-reset" type="button" aria-label="Nút chơi lại trò vượt chướng ngại vật" disabled>Chơi Lại</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Navigation logic
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('main > section');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = link.getAttribute('data-target');
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      sections.forEach(section => {
+        if(section.id === target) {
+          section.classList.add('active');
+          section.focus();
+        }
+        else section.classList.remove('active');
+      });
+    });
+  });
+
+  // Document Storage and Upload with localStorage
+  const fileInput = document.getElementById('file-input');
+  const uploadBtn = document.getElementById('upload-btn');
+  const uploadedFilesContainer = document.getElementById('uploaded-files');
+  const uploadStatus = document.getElementById('upload-status');
+
+  function loadFiles() {
+    let files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
+    if(files.length === 0) {
+      uploadedFilesContainer.innerHTML = "<p>Không có tài liệu nào được tải lên.</p>";
+    } else {
+      const ul = document.createElement('ul');
+      files.forEach((file, i) => {
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        span.textContent = file.name;
+        const btn = document.createElement('button');
+        btn.textContent = 'Xóa';
+        btn.setAttribute('aria-label', 'Xóa ' + file.name);
+        btn.addEventListener('click', () => {
+          files.splice(i,1);
+          localStorage.setItem('uploadedFiles', JSON.stringify(files));
+          loadFiles();
+        });
+        li.appendChild(span);
+        li.appendChild(btn);
+        ul.appendChild(li);
+      });
+      uploadedFilesContainer.innerHTML = '';
+      uploadedFilesContainer.appendChild(ul);
+    }
+  }
+
+  uploadBtn.addEventListener('click', () => {
+    const file = fileInput.files[0];
+    if(!file){
+      uploadStatus.textContent = 'Vui lòng chọn một tập tin!';
+      uploadStatus.style.color = 'red';
+      return;
+    }
+    let files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
+    files.push({name: file.name});
+    localStorage.setItem('uploadedFiles', JSON.stringify(files));
+    uploadStatus.textContent = 'Tập tin "' + file.name + '" đã được lưu trong trình duyệt.';
+    uploadStatus.style.color = 'limegreen';
+    fileInput.value = '';
+    loadFiles();
+  });
+
+  loadFiles();
+
+  // Bubble Pop Game
+  const bubbleGame = document.getElementById('bubble-game');
+  const bubbleScoreEl = document.getElementById('bubble-score');
+  const bubblePlayBtn = document.getElementById('bubble-play');
+  const bubbleResetBtn = document.getElementById('bubble-reset');
+
+  let bubbleScore = 0;
+  let bubbleInterval;
+  let bubbles = [];
+  let bubbleRunning = false;
+
+  function createBubble() {
+    if (!bubbleRunning) return;
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    const size = Math.random() * 40 + 30;
+    bubble.style.width = size + 'px';
+    bubble.style.height = size + 'px';
+    bubble.style.left = Math.random() * (bubbleGame.clientWidth - size) + 'px';
+    bubble.style.bottom = '-'+ size + 'px';
+    bubble.style.animationDuration = (Math.random()*5 + 5) + 's';
+    bubbleGame.appendChild(bubble);
+
+    function popBubble() {
+      bubble.removeEventListener('click', popBubble);
+      bubble.classList.add('pop');
+      bubble.style.pointerEvents = 'none';
+      bubbleScore++;
+      bubbleScoreEl.textContent = bubbleScore;
+      setTimeout(() => {
+        if(bubble.parentNode) bubbleGame.removeChild(bubble);
+        bubbles = bubbles.filter(b => b !== bubble);
+      }, 300);
+    }
+
+    bubble.addEventListener('click', popBubble);
+    bubbles.push(bubble);
+
+    bubble.addEventListener('animationend', () => {
+      if(bubble.parentNode) {
+        bubbleGame.removeChild(bubble);
+        bubbles = bubbles.filter(b => b !== bubble);
+      }
+    });
+  }
+
+  function startBubbleGame(){
+    if(bubbleRunning) return;
+    bubbleRunning = true;
+    bubbleScore = 0;
+    bubbleScoreEl.textContent = bubbleScore;
+    bubblePlayBtn.disabled = true;
+    bubbleResetBtn.disabled = false;
+    bubbleInterval = setInterval(createBubble, 700);
+  }
+
+  function stopBubbleGame(){
+    bubbleRunning = false;
+    bubblePlayBtn.disabled = false;
+    bubbleResetBtn.disabled = true;
+    clearInterval(bubbleInterval);
+    bubbles.forEach(bubble => {
+      if(bubble.parentNode) bubbleGame.removeChild(bubble);
+    });
+    bubbles = [];
+  }
+
+  bubblePlayBtn.addEventListener('click', () => startBubbleGame());
+  bubbleResetBtn.addEventListener('click', () => {
+    stopBubbleGame();
+    startBubbleGame();
+  });
+
+  // Do not start bubble game automatically
+
+  // Obstacle Game (Mario style) with mushroom and snowy valley background
+  const canvas = document.getElementById('obstacle-canvas');
+  const ctx = canvas.getContext('2d');
+  const obstaclePlayBtn = document.getElementById('obstacle-play');
+  const obstacleResetBtn = document.getElementById('obstacle-reset');
+  const obstacleScoreEl = document.getElementById('obstacle-score');
+
+  let runner = {
+    x: 50,
+    y: 0,
+    width: 40,
+    height: 60,
+    color: '#FFD700', // yellow like Mario hat
+    velocityY: 0,
+    gravity: 1.2,
+    jumpForce: -18,
+    grounded: false,
+  };
+  const groundLevel = canvas.height - 60;
+
+  let obstacles = [];
+  let obstacleSpeed = 6;
+  let spawnTimer = 0;
+  let spawnInterval = 90;
+  let obstacleRunning = false;
+  let score = 0;
+
+  // Images
+  const runnerImage = new Image();
+  runnerImage.src = "https://i.imgur.com/GHH7E4m.png"; // Mario pixel art (facing right, standing)
+
+  const mushroomImage = new Image();
+  mushroomImage.src = "https://i.imgur.com/Lvd3GqI.png"; // Mushroom pixel art
+
+  // Background images for snowy valley with mountains
+  const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  bgGradient.addColorStop(0, "#1e2d52");
+  bgGradient.addColorStop(1, "#4c6ef5");
+
+  // Shooting stars for background (drawn each frame)
+  let shootingStars = [];
+  function createShootingStar() {
+    shootingStars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height / 2,
+      length: 100 + Math.random() * 50,
+      speedX: 8 + Math.random() * 4,
+      speedY: 3 + Math.random() * 2,
+      opacity: 1,
+      decay: 0.015 + Math.random() * 0.01,
+    });
+  }
+  function updateShootingStars() {
+    for(let i = shootingStars.length - 1; i >= 0; i--) {
+      const s = shootingStars[i];
+      s.x += s.speedX;
+      s.y += s.speedY;
+      s.opacity -= s.decay;
+      if(s.opacity <= 0 || s.x > canvas.width || s.y > canvas.height){
+        shootingStars.splice(i,1);
+      }
+    }
+  }
+  function drawShootingStars() {
+    shootingStars.forEach(s => {
+      ctx.save();
+      ctx.strokeStyle = "rgba(255,255,255,"+s.opacity.toFixed(2)+")";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(s.x - s.length, s.y - s.length * 0.3);
+      ctx.stroke();
+      ctx.restore();
+    });
+  }
+  setInterval(() => {
+    if (obstacleRunning && shootingStars.length < 3) createShootingStar();
+  }, 700);
+
+  function resetObstacleGame(){
+    runner.y = groundLevel;
+    runner.velocityY = 0;
+    runner.grounded = true;
+    obstacles = [];
+    spawnTimer = 0;
+    score = 0;
+    obstacleSpeed = 6;
+    obstacleScoreEl.textContent = score;
+  }
+
+  function createObstacle(){
+    const size = 50; // fixed size red mushroom base size
+    obstacles.push({
+      x: canvas.width,
+      y: groundLevel + 10, // position a bit on ground
+      width: size,
+      height: size,
+      image: mushroomImage
+    });
+  }
+
+  function updateObstacle(){
+    if(!obstacleRunning) return;
+
+    // Background
+    // Clear
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw gradient background
+    ctx.fillStyle = bgGradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw mountains simple shapes (triangles)
+    ctx.fillStyle = "#24325f";
+    ctx.beginPath();
+    ctx.moveTo(0, groundLevel);
+    ctx.lineTo(100, 150);
+    ctx.lineTo(250, groundLevel);
+    ctx.closePath();
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(180, groundLevel);
+    ctx.lineTo(300, 100);
+    ctx.lineTo(420, groundLevel);
+    ctx.closePath();
+    ctx.fill();
+
+    // Draw ground valley base
+    ctx.fillStyle = "#3a4c7c";
+    ctx.fillRect(0, groundLevel, canvas.width, canvas.height - groundLevel);
+
+    // Update and draw shooting stars
+    updateShootingStars();
+    drawShootingStars();
+
+    // Runner physics
+    runner.velocityY += runner.gravity;
+    runner.y += runner.velocityY;
+    if(runner.y > groundLevel){
+      runner.y = groundLevel;
+      runner.velocityY = 0;
+      runner.grounded = true;
+    }
+
+    // Draw runner with image
+    if(runnerImage.complete){
+      ctx.drawImage(runnerImage, runner.x, runner.y - 10, runner.width, runner.height);
+    } else {
+      // fallback rectangle if image not loaded
+      ctx.fillStyle = runner.color;
+      ctx.fillRect(runner.x, runner.y, runner.width, runner.height);
+    }
+
+    // Obstacles update and draw mushrooms
+    spawnTimer++;
+    if(spawnTimer >= spawnInterval){
+      spawnTimer = 0;
+      createObstacle();
+    }
+
+    for(let i = obstacles.length - 1; i >=0; i--){
+      let obs = obstacles[i];
+      obs.x -= obstacleSpeed;
+      if(obs.image && obs.image.complete){
+        ctx.drawImage(obs.image, obs.x, obs.y - obs.height, obs.width, obs.height);
+      } else {
+        ctx.fillStyle = "#ff0000";
+        ctx.fillRect(obs.x, obs.y - obs.height, obs.width, obs.height);
+      }
+
+      // Collision detection (AABB)
+      if(runner.x < obs.x + obs.width &&
+         runner.x + runner.width > obs.x &&
+         runner.y < obs.y &&
+         runner.y + runner.height > obs.y - obs.height){
+          // Game over
+          obstacleRunning = false;
+          alert('Bạn đã va chạm cây nấm! Điểm: ' + score + '\nNhấn OK để chơi lại.');
+          resetObstacleGame();
+          obstaclePlayBtn.disabled = false;
+          obstacleResetBtn.disabled = true;
+          return;
+      }
+
+      // Remove offscreen obstacle and increment score
+      if(obs.x + obs.width < 0){
+        obstacles.splice(i,1);
+        score++;
+        obstacleScoreEl.textContent = score;
+        // Gradually increase speed every 10 points
+        if(score % 10 ===0) obstacleSpeed += 0.5;
+      }
+    }
+    requestAnimationFrame(updateObstacle);
+  }
+
+  function jumpObstacle(){
+    if(runner.grounded){
+      runner.velocityY = runner.jumpForce;
+      runner.grounded = false;
+    }
+  }
+
+  obstaclePlayBtn.addEventListener('click', () => {
+    if(obstacleRunning) return;
+    obstacleRunning = true;
+    obstaclePlayBtn.disabled = true;
+    obstacleResetBtn.disabled = false;
+    resetObstacleGame();
+    updateObstacle();
+  });
+
+  obstacleResetBtn.addEventListener('click', () => {
+    obstacleRunning = false;
+    obstaclePlayBtn.disabled = false;
+    obstacleResetBtn.disabled = true;
+    resetObstacleGame();
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  });
+
+  // Keyboard and touch for jump
+  document.addEventListener('keydown', e => {
+    if(e.code === 'Space'){
+      e.preventDefault();
+      jumpObstacle();
+    }
+  });
+  canvas.addEventListener('touchstart', e => {
+    jumpObstacle();
+  });
+
+</script>
+</body>
+</html>
+

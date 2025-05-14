@@ -1,0 +1,203 @@
+/* Improved body styling */
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #f0f0f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.4s ease;
+  }
+  
+  /* Header improvements */
+  header {
+    background-color: rgba(63, 81, 181, 0.9);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    box-shadow: 0 5px 15px rgba(63,81,181,0.6);
+    position: relative;
+    z-index: 10;
+    border-radius: 0 0 15px 15px;
+    user-select: none;
+  }
+  
+  header h1 {
+    font-weight: 700;
+    font-size: 2.6rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.3rem;
+  }
+  
+  /* Navigation */
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-left: 0;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  nav ul li a {
+    color: #ffdd57;
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 0 0 #ffca28;
+    cursor: pointer;
+  }
+  
+  nav ul li a:hover,
+  nav ul li a.active {
+    background-color: #ffca28;
+    color: #1e3c72;
+    box-shadow: inset 200px 0 0 0 #ffca28;
+  }
+  
+  /* Social links */
+  .social-links a {
+    background: rgba(255 255 255 / 0.15);
+    padding: 0.4rem 0.6rem;
+    border-radius: 50%;
+    color: #ffca28;
+    font-size: 1.8rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    background: rgba(255 255 255 / 0.35);
+    transform: scale(1.15);
+    color: #ffd54f;
+  }
+  
+  /* Main content */
+  main {
+    flex: 1;
+    padding: 2rem 3rem;
+    max-width: 1100px;
+    margin: 2rem auto 4rem auto;
+    background: rgba(255 255 255 / 0.08);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    backdrop-filter: blur(15px);
+    color: #f6f8fa;
+    user-select: text;
+  }
+  
+  /* Section headings */
+  section h2 {
+    color: #ffca28;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+  }
+  
+  /* Lists inside projects */
+  #projects ul {
+    margin-left: 1.2rem;
+    list-style-type: square;
+    color: #f0e68c;
+    font-size: 1.2rem;
+  }
+  
+  /* Uploaded files list */
+  #uploaded-files li {
+    background: rgba(255 255 255 / 0.15);
+    border: 1px solid rgba(255 255 255 / 0.3);
+    transition: background-color 0.3s ease;
+  }
+  
+  #uploaded-files li:hover {
+    background: rgba(255 255 255 / 0.3);
+  }
+  
+  /* Buttons */
+  button {
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    background-color: #ffca28;
+    color: #1e3c72;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(255, 202, 40, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #ffd54f;
+    box-shadow: 0 6px 14px rgba(255, 214, 79, 0.7);
+  }
+  
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  /* Inputs */
+  input[type="file"] {
+    color: #ffca28;
+    background: transparent;
+    border: 1px solid #ffca28;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  input[type="file"]:hover {
+    background-color: #ffca28;
+    color: #1e3c72;
+  }
+  
+  /* Game container */
+  .game-container {
+    background: rgba(255 255 255 / 0.15);
+    box-shadow: 0 0 30px rgba(255 202, 40, 0.7);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: box-shadow 0.3s ease;
+  }
+  .game-container:hover {
+    box-shadow: 0 0 40px rgba(255 202, 40, 0.9);
+  }
+  
+  /* Bubble styles */
+  .bubble {
+    box-shadow: 0 0 8px 2px #4dc6ff;
+  }
+  .bubble.pop {
+    box-shadow: 0 0 15px 5px #ffca28;
+    transform: scale(1.8);
+  }
+  
+  /* Instructions text style */
+  .instructions {
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.8rem;
+    color: #ffe066;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  }
+  
+  /* Responsive improvements */
+  @media (max-width: 600px) {
+    main {
+      padding: 1.5rem 1rem;
+      margin: 1rem auto 3rem auto;
+    }
+    nav ul {
+      justify-content: center;
+    }
+    nav ul li a {
+      font-size: 1rem;
+    }
+    header h1 {
+      font-size: 2rem;
+    }
+  }
+  
