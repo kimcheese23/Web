@@ -399,13 +399,14 @@
         <button id="btn-games" aria-expanded="false" aria-controls="games">Trò Chơi</button>
         <div id="games-content" class="dropdown-content" tabindex="0" aria-label="Nội dung trò chơi">
           <div id="games">
-            <div class="game-container" aria-label="Trò chơi chạm bong bóng nổ">
-              <h3>Chạm Bong Bóng Nổ</h3>
-              <div id="bubble-game" aria-describedby="bubble-desc" tabindex="0" role="application"></div>
-              <p id="bubble-desc" class="instructions" style="color:#1e3c72;">Nhấp hoặc chạm vào các bong bóng để tạo tiếng nổ. Bong bóng sẽ nổi lên từ dưới lên.</p>
-              <p>Điểm: <span id="bubble-score">0</span></p>
-              <button id="bubble-play" type="button" aria-label="Nút chơi trò bong bóng">Chơi</button>
-              <button id="bubble-reset" type="button" aria-label="Nút chơi lại trò bong bóng" disabled>Chơi Lại</button>
+              <!-- Bubble Pop Game -->
+              <div class="game-container" aria-label="Trò chơi chạm bong bóng nổ">
+                <h3>Chạm Bong Bóng Nổ</h3>
+                <div id="bubble-game" aria-describedby="bubble-desc" tabindex="0" role="application"></div>
+                <p id="bubble-desc" class="instructions" style="color:#1e3c72;">Nhấp hoặc chạm vào các bong bóng để tạo tiếng nổ. Bong bóng sẽ nổi lên từ dưới lên.</p>
+                <p>Điểm: <span id="bubble-score">0</span></p>
+                <button id="bubble-play" type="button" aria-label="Nút chơi trò bong bóng">Chơi</button>
+                      <button id="bubble-reset" type="button" aria-label="Nút chơi lại trò bong bóng" disabled>Chơi Lại</button>
             </div>
             <div class="game-container" aria-label="Trò chơi vượt chướng ngại vật">
               <h3>Vượt Chướng Ngại Vật (Mario Style)</h3>
@@ -430,8 +431,6 @@
     <input type="text" id="music-url" placeholder="Ví dụ: https://www.youtube.com/watch?v=dQw4w9WgXcQ" aria-label="Nhập URL nhạc" />
     <button id="load-music" aria-label="Phát nhạc từ URL">Phát nhạc</button>
     <div id="music-container" aria-live="polite" aria-atomic="true" style="flex-grow:1;"></div>
-    <label for="volume-control" style="white-space:nowrap;">Âm lượng:</label>
-    <input type="range" id="volume-control" min="0" max="1" step="0.01" value="0.5" aria-label="Điều chỉnh âm lượng" />
   </div>
 </footer>
 
@@ -542,7 +541,7 @@
 
   loadFiles();
 
-  // Bubble Pop Game variables and logic
+  // Bubble Pop Game
   const bubbleGame = document.getElementById('bubble-game');
   const bubbleScoreEl = document.getElementById('bubble-score');
   const bubblePlayBtn = document.getElementById('bubble-play');
@@ -614,241 +613,7 @@
     stopBubbleGame();
     startBubbleGame();
   });
-
-  // Obstacle Game variables and logic (Mario style shapes)
-  const canvas = document.getElementById('obstacle-canvas');
-  const ctx = canvas.getContext('2d');
-  const obstaclePlayBtn = document.getElementById('obstacle-play');
-  const obstacleResetBtn = document.getElementById('obstacle-reset');
-  const obstacleScoreEl = document.getElementById('obstacle-score');
-
-  let runner = {
-    x: 50,
-    y: 0,
-    width: 40,
-    height: 60,
-    velocityY: 0,
-    gravity: 1.2,
-    jumpForce: -18,
-    grounded: false,
-  };
-  const groundLevel = canvas.height - runner.height;
-
-  let obstacles = [];
-  let obstacleSpeed = 6;
-  let spawnTimer = 0;
-  let spawnInterval = 90;
-  let obstacleRunning = false;
-  let score = 0;
-
-  function drawRunner() {
-    ctx.fillStyle = '#1565c0';
-    ctx.fillRect(runner.x + 5, runner.y + 20, runner.width - 10, runner.height - 20);
-
-    ctx.fillStyle = '#d32f2f';
-    ctx.fillRect(runner.x, runner.y + 20, 10, runner.height - 20);
-
-    ctx.fillStyle = '#ffe0bd';
-    ctx.beginPath();
-    ctx.ellipse(runner.x + runner.width / 2, runner.y + 10, 14, 18, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = '#d32f2f';
-    ctx.beginPath();
-    ctx.ellipse(runner.x + runner.width / 2, runner.y + 2, 18, 10, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = '#b71c1c';
-    ctx.fillRect(runner.x + 18, runner.y + 8, 20, 5);
-  }
-
-  function drawMushroom(x, y, width, height) {
-    ctx.fillStyle = '#f5f5dc';
-    ctx.fillRect(x + width*0.35, y + height*0.5, width * 0.3, height * 0.5);
-    ctx.beginPath();
-    ctx.ellipse(x + width*0.5, y + height*0.3, width*0.5, height*0.5, 0, 0, Math.PI*2);
-    ctx.fillStyle = '#d32f2f';
-    ctx.fill();
-    ctx.fillStyle = 'white';
-    const dots = [
-      [x + width*0.35, y + height*0.25],
-      [x + width*0.60, y + height*0.15],
-      [x + width*0.70, y + height*0.40],
-      [x + width*0.45, y + height*0.45]
-    ];
-    dots.forEach(([cx, cy]) => {
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, 5, 3.5, 0, 0, Math.PI * 2);
-      ctx.fill();
-    });
-  }
-
-  function drawAuroraBackground() {
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0, '#1e2d52');
-    gradient.addColorStop(0.3, '#1a5cc3');
-    gradient.addColorStop(0.6, '#2a81f7');
-    gradient.addColorStop(1, '#0e3d59');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    for(let i=0; i<5; i++) {
-      let x = (canvas.width/5)*i + 40;
-      let gradientLine = ctx.createRadialGradient(x, 0, 20, x, canvas.height, 200);
-      gradientLine.addColorStop(0, 'rgba(138, 255, 221, 0.3)');
-      gradientLine.addColorStop(1, 'transparent');
-      ctx.fillStyle = gradientLine;
-      ctx.fillRect(x-100, 0, 200, canvas.height);
-    }
-  }
-
-  let shootingStars = [];
-  function createShootingStar() {
-    shootingStars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height / 2,
-      length: 100 + Math.random() * 50,
-      speedX: 8 + Math.random() * 4,
-      speedY: 3 + Math.random() * 2,
-      opacity: 1,
-      decay: 0.015 + Math.random() * 0.01,
-    });
-  }
-  function updateShootingStars() {
-    for(let i = shootingStars.length - 1; i >= 0; i--) {
-      const s = shootingStars[i];
-      s.x -= s.speedX;
-      s.y += s.speedY;
-      s.opacity -= s.decay;
-      if(s.opacity <= 0 || s.x < 0 || s.y > canvas.height){
-        shootingStars.splice(i,1);
-      }
-    }
-  }
-  function drawShootingStars() {
-    shootingStars.forEach(s => {
-      ctx.save();
-      ctx.strokeStyle = "rgba(255,255,255,"+s.opacity.toFixed(2)+")";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(s.x, s.y);
-      ctx.lineTo(s.x + s.length, s.y - s.length * 0.3);
-      ctx.stroke();
-      ctx.restore();
-    });
-  }
-
-  setInterval(() => {
-    if (obstacleRunning && shootingStars.length < 8) createShootingStar();
-  }, 500);
-
-  function resetObstacleGame(){
-    runner.y = groundLevel;
-    runner.velocityY = 0;
-    runner.grounded = true;
-    obstacles = [];
-    spawnTimer = 0;
-    score = 0;
-    obstacleSpeed = 6;
-    obstacleScoreEl.textContent = score;
-  }
-
-  function createObstacle(){
-    const size = 50;
-    obstacles.push({
-      x: canvas.width,
-      y: groundLevel + 10,
-      width: size,
-      height: size,
-    });
-  }
-
-  function updateObstacle(){
-    if(!obstacleRunning) return;
-
-    drawAuroraBackground();
-    updateShootingStars();
-    drawShootingStars();
-
-    ctx.fillStyle = '#1c2733';
-    ctx.fillRect(0, groundLevel + runner.height, canvas.width, canvas.height - groundLevel);
-
-    runner.velocityY += runner.gravity;
-    runner.y += runner.velocityY;
-    if(runner.y > groundLevel){
-      runner.y = groundLevel;
-      runner.velocityY = 0;
-      runner.grounded = true;
-    }
-
-    drawRunner();
-
-    spawnTimer++;
-    if(spawnTimer >= spawnInterval){
-      spawnTimer = 0;
-      createObstacle();
-    }
-
-    for(let i = obstacles.length - 1; i >=0; i--){
-      let obs = obstacles[i];
-      obs.x -= obstacleSpeed;
-      drawMushroom(obs.x, obs.y - obs.height, obs.width, obs.height);
-
-      if(runner.x < obs.x + obs.width &&
-         runner.x + runner.width > obs.x &&
-         runner.y + runner.height > obs.y - obs.height &&
-         runner.y < obs.y){
-          obstacleRunning = false;
-          alert('Bạn đã va chạm cây nấm! Điểm: ' + score + '\nNhấn OK để chơi lại.');
-          resetObstacleGame();
-          obstaclePlayBtn.disabled = false;
-          obstacleResetBtn.disabled = true;
-          ctx.clearRect(0,0,canvas.width,canvas.height);
-          return;
-      }
-
-      if(obs.x + obs.width < 0){
-        obstacles.splice(i,1);
-        score++;
-        obstacleScoreEl.textContent = score;
-        if(score % 10 === 0) obstacleSpeed += 0.5;
-      }
-    }
-    requestAnimationFrame(updateObstacle);
-  }
-
-  function jumpObstacle(){
-    if(runner.grounded){
-      runner.velocityY = runner.jumpForce;
-      runner.grounded = false;
-    }
-  }
-
-  obstaclePlayBtn.addEventListener('click', () => {
-    if(obstacleRunning) return;
-    obstacleRunning = true;
-    obstaclePlayBtn.disabled = true;
-    obstacleResetBtn.disabled = false;
-    resetObstacleGame();
-    updateObstacle();
-  });
-
-  obstacleResetBtn.addEventListener('click', () => {
-    obstacleRunning = false;
-    obstaclePlayBtn.disabled = false;
-    obstacleResetBtn.disabled = true;
-    resetObstacleGame();
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-  });
-
-  document.addEventListener('keydown', e => {
-    if(e.code === 'Space'){
-      e.preventDefault();
-      jumpObstacle();
-    }
-  });
-  canvas.addEventListener('touchstart', e => {
-    jumpObstacle();
-  });
+  // Do not start bubble game automatically
 
   // Music player controls
   const musicUrlInput = document.getElementById('music-url');
@@ -922,17 +687,6 @@
     }
   });
 
-  // Volume control for iframe audio is restricted cross origin, so use YouTube Player API or disclaim no direct volume control possible
-  // We will implement volume slider that controls the iframe audio volume using YouTube API if available, else notify user.
-  const volumeControl = document.getElementById('volume-control');
-  volumeControl.addEventListener('input', (e) => {
-    let vol = e.target.value;
-    // Without YouTube API, cannot control volume directly on iframe
-    // Notify user
-    if(currentIframe){
-      alert('Điều chỉnh âm lượng nhạc chỉ hoạt động khi dùng YouTube API (không hỗ trợ iframe âm nhạc thông thường).');
-    }
-  });
 </script>
 </body>
 </html>
