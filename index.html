@@ -1,9 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-  <title>Welcome</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chào Mừng Đến Với Các Dự Án Tạo Web Của Tôi</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    background-color: rgba(0,0,0,0.3);
+    padding: 2rem 3rem;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+  }
+  main {
+    max-width: 900px;
+    width: 90%;
+    background: rgba(255 255 255 / 0.1);
+    margin: 2rem 0 4rem 0;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  }
+  main h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #ffd54f;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  }
+  ul.project-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul.project-list li {
+    background: rgba(255 255 255 / 0.15);
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1.25rem;
+    transition: background 0.3s ease;
+  }
+  ul.project-list li:hover {
+    background: rgba(255 255 255 / 0.4);
+  }
+  ul.project-list li a {
+    color: #ffeb3b;
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+  }
+  ul.project-list li a:hover {
+    text-decoration: underline;
+  }
+  footer {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: rgba(255 255 255 / 0.7);
+    font-size: 0.9rem;
+    user-select: none;
+  }
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 2rem;
+    }
+    main h2 {
+      font-size: 1.5rem;
+    }
+    ul.project-list li {
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+    }
+  }
+</style>
 </head>
 <body>
-  <h1>Hello from GitHub Pages!</h1>
+<header>
+  <h1>Chào Mừng Đến Với Các Dự Án Tạo Web Của Tôi</h1>
+  <p>Tại đây bạn có thể xem các trang web mà tôi đã thực hiện.</p>
+</header>
+<main>
+  <h2>Mục Lục Các Trang Web</h2>
+  <ul class="project-list" aria-label="Danh sách dự án web">
+    <li><a href="personal_intro_tran_thi_kim_chi.html" target="_blank" rel="noopener">Trang Cá Nhân - Trần Thị Kim Chi</a></li>
+    <li><a href="welcome_projects.html" target="_blank" rel="noopener">Trang Chào Mừng Các Dự Án</a></li>
+    <!-- Thêm các link dự án khác ở đây -->
+  </ul>
+</main>
+<footer>
+  &copy; 2024 Trần Thị Kim Chi. Đã tạo với ❤️.
+</footer>
 </body>
 </html>
