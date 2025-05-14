@@ -408,14 +408,6 @@
                 <button id="bubble-play" type="button" aria-label="Nút chơi trò bong bóng">Chơi</button>
                       <button id="bubble-reset" type="button" aria-label="Nút chơi lại trò bong bóng" disabled>Chơi Lại</button>
             </div>
-            <div class="game-container" aria-label="Trò chơi vượt chướng ngại vật">
-              <h3>Vượt Chướng Ngại Vật (Mario Style)</h3>
-              <canvas id="obstacle-canvas" width="460" height="300" role="application" aria-label="Canvas trò chơi vượt chướng ngại vật"></canvas>
-              <p class="instructions" style="color:#e0e7ff;">Nhấn phím cách hoặc chạm để nhảy qua cây nấm.</p>
-              <p>Điểm: <span id="obstacle-score">0</span></p>
-              <button id="obstacle-play" type="button" aria-label="Nút chơi trò vượt chướng ngại vật">Chơi</button>
-              <button id="obstacle-reset" type="button" aria-label="Nút chơi lại trò vượt chướng ngại vật" disabled>Chơi Lại</button>
-            </div>
           </div>
         </div>
       </li>
@@ -428,7 +420,10 @@
 <footer>
   <div id="music-player">
     <label for="music-url">Dán URL YouTube hoặc Spotify để phát nhạc:</label>
-    <input type="text" id="music-url" placeholder="Ví dụ: https://www.youtube.com/watch?v=dQw4w9WgXcQ" aria-label="Nhập URL nhạc" />
+        <audio controls autoplay muted>
+            <source src="https://www.youtube.com/watch?v=Anycp_NGCkY" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     <button id="load-music" aria-label="Phát nhạc từ URL">Phát nhạc</button>
     <div id="music-container" aria-live="polite" aria-atomic="true" style="flex-grow:1;"></div>
   </div>
